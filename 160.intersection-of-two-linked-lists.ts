@@ -40,20 +40,22 @@ function getIntersectionNode(
 
   // 如果 A 小於 B 將兩者交換
   if (lenA < lenB) {
+    // 交換 A 與 B 的值和長度
     ;[curA, curB] = [curB, curA]
     ;[lenA, lenB] = [lenB, lenA]
   }
 
   // 兩個長度差異
   let lenCount = lenA - lenB
-  // 將 A 與 B 對其
+  // 將 A 與 B 對齊
   while (lenCount-- > 0) {
-    // 注意
+    // 注意是當 lenCount > 0 時才移動
     curA = curA.next
   }
 
   while (curA && curB) {
     if (curA === curB) {
+      // 要整個鏈結都相等才行，不能只比較值
       return curA
     }
     curA = curA.next

@@ -21,15 +21,22 @@
 // };
 
 function isAnagram(s: string, t: string): boolean {
+  // 如果兩個字串的長度不一樣就不是
   if (s.length !== t.length) return false
-  let tableArr: number[] = new Array(26).fill(0)
-  let pivot: number = 'a'.charCodeAt(0)
+  // 建立一個長度 26 的 0 Array
+  const arr = new Array(26).fill(0)
+  // 定義 pivot 基準字元位置
+  const pivot = 'a'.charCodeAt(0)
 
   for (let i = 0; i < s.length; i++) {
-    tableArr[s.charCodeAt(i) - pivot]++
-    tableArr[t.charCodeAt(i) - pivot]--
+    // 相對位置為該字串的索引位置扣掉基準字元位置所得的相對位置
+    // 遞增字串 s 的字母位置數字
+    arr[s.charCodeAt(i) - pivot]++
+    // 遞減字串 t 的字幕位置數值
+    arr[t.charCodeAt(i) - pivot]--
   }
 
-  return tableArr.every((i) => i === 0)
+  // 如果 arr 中有非零的值則 return false
+  return arr.every((i) => i === 0)
 }
 // @lc code=end
